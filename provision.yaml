@@ -51,3 +51,16 @@
       state: started
 
 - import_playbook: provision-common-desktop-roles.yaml
+
+- name: Final Provision Step
+  hosts: desktop
+  gather_facts: true
+  vars_files:
+    - vars/packages-dnf.yaml
+  tasks:
+  - name: Make sure alternative browsers are Absent
+    dnf:
+      update_cache: yes
+      name: "{{ dnf_disallowed_browsers }}"
+      allowerasing: yes
+      state: absent  

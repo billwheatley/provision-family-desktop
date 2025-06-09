@@ -49,6 +49,7 @@ dnf_packages:
   - kig
   - kstars
   - marble
+  - krita
   # For compatibility with electron based apps running on KDE 
   - lib64dbusmenu-qt6
   # Games
@@ -88,3 +89,14 @@ dnf_disallowed_packages:
   - neochat
   - kget
   - ktorrent
+
+dnf_disallowed_browsers:
+  - chromium
+  - firefox
+  - konqueror
+  - torbrowser-launcher
+  - qutebrowser
+  - angelfish
+  - midori
+  - privacybrowser
+  - falkon
