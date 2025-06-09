@@ -20,5 +20,5 @@ As your main admin/sudo user (do not sudo the call, that is done in the script):
 cd ~
 mkdir -p ~/dev/ansible-desktop
 cd ~/dev/ansible-desktop
-curl -s https://raw.githubusercontent.com/billwheatley/provision-family-desktop/master/bootstrap.sh | bash -
+curl -s https://raw.githubusercontent.com/billwheatley/provision-family-desktop/main/bootstrap.sh | bash -
 ```
