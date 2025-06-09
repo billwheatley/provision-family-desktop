@@ -60,7 +60,7 @@ mkdir -p $HOME/automated-install/
 
 #Call key setup playbook
 PRIMARY_USER_GROUP=`id -gn`
-cd provision-desktop
+cd provision-family-desktop
 
 #Need sudo on open-mandriva because facts plugin needs it
 sudo ansible-playbook key-setup.yaml --extra-vars="localhost_user=${USER} localhost_user_group=${PRIMARY_USER_GROUP} ansible_user_dir=${HOME}"
