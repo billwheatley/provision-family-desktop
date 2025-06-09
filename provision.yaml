@@ -1,0 +1,53 @@
+- name: Provision Playbook
+  hosts: desktop
+  gather_facts: true
+  vars_files:
+    - vars/packages-dnf.yaml
+    - vars/remote-non-repo-rpms.yaml
+  tasks:
+  - name: Ensure Certain OpenMandriva dnf Packages are Absent
+    dnf:
+      update_cache: yes
+      name: "{{ dnf_disallowed_packages }}"
+      allowerasing: yes
+      state: absent  
+  - name: Ensure Distro dnf repo packages are up to date
+    dnf:
+      name: "*"
+      state: latest
+    tags:
+      - pkg_update
+  - name: Ensure OpenMandriva dnf Packages are Present
+    dnf:
+      update_cache: yes
+      name: "{{ dnf_packages }}"
+      allowerasing: yes
+      state: present
+  - name: Ensure Remote Non-Repo Packages are up to Date
+    dnf:
+      disable_gpg_check: yes
+      name: "{{ remote_non_repo_rpms }}"
+      state: present
+  ############################# Local RPM Install ##############################
+  - name: (Local rpm) Finding Local rpms
+    find:
+      paths: "/home/{{ for_user }}/automated-install/rpm"
+      patterns: "*.rpm"
+    register: local_rpm_results
+  - name: (Local rpm) Prepare Local rpm List
+    set_fact:
+      rpm_paths: "{{ local_rpm_results.files | map(attribute='path') | list}}"
+  - name: (Local rpm) Ensure Local rpm Packages are Installed
+    dnf:
+      name: "{{ rpm_paths }}"
+      state: present
+      disable_gpg_check: yes
+  ################################################################################
+
+  - name: Ensure avahi-daemon (for automatic printer detection) is enable and started
+    systemd:
+      name: avahi-daemon
+      enabled: yes
+      state: started
+
+- import_playbook: provision-common-desktop-roles.yaml

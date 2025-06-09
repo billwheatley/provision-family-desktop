@@ -1,0 +1,10 @@
+- name: Provision Common Roles
+  hosts: desktop
+  vars_files:
+    - vars/packages-flatpaks.yaml
+  roles:
+    - role: chrome-role
+    - role: flatpak-role
+      flatpak_apps:
+        - name: "{{ flathub_apps }}"
+    
