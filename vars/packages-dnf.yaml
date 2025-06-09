@@ -80,7 +80,6 @@ dnf_packages:
   - klickety
   - klines
   - knavalbattle
-  - skladnik
   - blinken
   - lskat
 
