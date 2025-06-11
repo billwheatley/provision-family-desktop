@@ -50,6 +50,12 @@
       enabled: yes
       state: started
 
+  - name: Ensure sshd is enable and started
+    systemd:
+      name: sshd
+      enabled: yes
+      state: started
+
 - import_playbook: provision-common-desktop-roles.yaml
 
 - name: Final Provision Step

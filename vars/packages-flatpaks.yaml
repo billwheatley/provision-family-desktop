@@ -2,5 +2,5 @@ flathub_apps:
   - org.musicbrainz.Picard
   - io.github.tfuxu.floodit
   - io.github.sharkwouter.oceanpop
-  - com.google.EarthPro
   - ro.go.hmlendea.SokoGrump
+  - com.github.PintaProject.Pinta
