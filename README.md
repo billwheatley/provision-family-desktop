@@ -4,13 +4,13 @@ Ansible Playbooks to build my "Family" desktop.
 
 With Windows 10 EOL approaching (Oct 14 2025), the old family desktop, lacking a TPM 2.0 chip has no other choice then to get an upgrade to linux! Okay I am aware of the registry hack to get Windows 11 to work (for now) but I am not going there. I will take the excuse when I can to move the family over to linux.
 
-Using Ansible playbooks worked so well for [my own desktops](../provision-desktop/) it was quicker to copy those playbooks, make some changes then it would have been to manually install and configure the machine on my own.  Plus it gives me ability to distro hop or switch to different base versions of OpenMandriva easier. There is much less of feeling of machine setup lock-in with automation.
+Using Ansible playbooks worked so well for [my own desktops](https://github.com/billwheatley/provision-desktop) it was quicker to copy those playbooks, make some changes then it would have been to manually install and configure the machine on my own.  Plus it gives me ability to distro hop or switch to different base versions of OpenMandriva easier. There is much less of feeling of machine setup lock-in with automation.
 
 ## Pre-Reqs
 
 * A basic OpenMandrivaLx distro install via iso
 * [Bootstrap Script](#bootstrap) run
-* (Optional) Any Local RPMs in the magic directory
+* (Optional) Any [Local RPMs in the magic directory](#optional-local-rpms)
 * Internet Connection *(recommend high bandwidth and large data allowance for initial provisioning)*
 
 ### Tested with
