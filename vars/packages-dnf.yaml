@@ -37,6 +37,7 @@ dnf_packages:
   - poppler
   - java-21-openjdk-devel
   - iptables
+  - bindfs
   # Useful for radeon GPUs
   - radeontop
 # KDE Specific
