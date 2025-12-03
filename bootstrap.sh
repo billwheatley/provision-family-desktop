@@ -16,19 +16,22 @@ safe_edit_repo_file() {
 if [ -x "$(command -v dnf)" ]; then 
     if [ -f /etc/openmandriva-release ]; then
         echo OpenMandrivia Detected, additional repos need to be turned on now
-        if [ -f /etc/yum.repos.d/openmandriva-rolling-x86_64.repo ]; then
+        if [ -f /etc/yum.repos.d/openmandriva-rock-x86_64.repo ]; then
             echo Detected x86_64 Variant
-            repo_file=/etc/yum.repos.d/openmandriva-rolling-x86_64.repo
-        elif [ -f /etc/yum.repos.d/openmandriva-rolling-znver1.repo ]; then
+            repo_file=/etc/yum.repos.d/openmandriva-rock-x86_64.repo
+        elif [ -f /etc/yum.repos.d/openmandriva-rock-znver1.repo ]; then
             echo Detected AMD Variant
-            repo_file=/etc/yum.repos.d/openmandriva-rolling-znver1.repo
+            repo_file=/etc/yum.repos.d/openmandriva-rock-znver1.repo
         fi
         sudo cp $repo_file $repo_file.backup
         echo Backup of repo file made if this fails: $repo_file.backup
-        # Doing this by Line number
-        safe_edit_repo_file $repo_file "59"
-        safe_edit_repo_file $repo_file "107"
+        # Doing this by Line number - These lines applies to ROCK variants
+        safe_edit_repo_file $repo_file "83"
+        safe_edit_repo_file $repo_file "94"
         safe_edit_repo_file $repo_file "155"
+        safe_edit_repo_file $repo_file "166"
+        safe_edit_repo_file $repo_file "227"
+        safe_edit_repo_file $repo_file "238"
 
         # OM uses bsd-tar by default, Ansible needs gnu-tar, this will fix this (and it's not an official dependency of ansible in OM repos)
         sudo dnf -y install gnutar ansible git sshpass
