@@ -8,7 +8,7 @@ Using Ansible playbooks worked so well for [my own desktops](https://github.com/
 
 ## Pre-Reqs
 
-* A basic OpenMandrivaLx distro install via iso
+* A basic OpenMandrivaLx 6.0 Rock distro install via iso
 * [Bootstrap Script](#bootstrap) run
 * (Optional) Any [Local RPMs in the magic directory](#optional-local-rpms)
 * Internet Connection *(recommend high bandwidth and large data allowance for initial provisioning)*
