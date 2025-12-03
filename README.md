@@ -15,7 +15,7 @@ Using Ansible playbooks worked so well for [my own desktops](https://github.com/
 
 ### Tested with
 
-* OpenMandrivaLx: AMD | Wayland | Plasma 6 | Rome 2025-05-05 Shanpshot iso
+* OpenMandrivaLx 6.0: AMD | Plasma 6 | Rock | Tested on Dec 3 2025
 
 *Note: These may work against other similar versions and distros with little or no modification*
 
