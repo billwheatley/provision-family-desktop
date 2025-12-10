@@ -3,10 +3,6 @@
 if [ -x "$(command -v apt-get)" ]; then 
     sudo apt-get update
     sudo apt-get -y install ansible git sshpass
-    else
-        echo Not the expected distro, looking for Debian
-        exit 1        
-    fi
 else
     echo Not sure which package manager is running on this machine, its not apt-get as expected
     exit 1
