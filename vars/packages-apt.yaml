@@ -32,8 +32,6 @@ apt_packages:
   - exfat-fuse
   - libdvdnav4
   - libdvdread8
-  - libdvd-pkg
-  - libdvd-pkg
   - bindfs
   - openssh-server
   # Useful for radeon GPUs
