@@ -21,7 +21,7 @@
   - name: Ensure Debian apt Packages are Present
     apt:
       update_cache: yes
-      name: "{{ common_packages + pop_packages}}"
+      name: "{{ apt_packages}}"
       state: present
   - name: Ensure Remote Non-Repo Packages are up to Date
     apt:
