@@ -45,10 +45,12 @@ Sudo Bootstrap Functions:
 As your root user do, provide the existing user to make them sudo:
 
 ```console
+apt-get install -y curl
 # TODO When merging change to main branch reference
-curl -s https://raw.githubusercontent.com/billwheatley/provision-family-desktop/debian-13/make-sudo.sh myUserName | bash -
-
+curl -s https://raw.githubusercontent.com/billwheatley/provision-family-desktop/debian-13/make-sudo.sh | bash -s myUserName
 ```
+
+**Reboot** The machine It appears that only a reboot allows the group to take
 
 Then as your sudo user (do not sudo the call, that is done in the script):
 
