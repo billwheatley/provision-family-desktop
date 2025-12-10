@@ -34,7 +34,6 @@ Root Bootstap Function:
 
 Sudo Bootstrap Functions:
 
-* TODO ? Enable Extended repos
 * Install Ansible, git, sshpass
 * Get these playbooks on your machine
 * Ensure "`python`" (without numbers) is in the path for Ansible
@@ -48,9 +47,10 @@ As your root user do, provide the existing user to make them sudo:
 apt-get install -y curl
 # TODO When merging change to main branch reference
 curl -s https://raw.githubusercontent.com/billwheatley/provision-family-desktop/debian-13/make-sudo.sh | bash -s myUserName
-```
 
-**Reboot** The machine It appears that only a reboot allows the group to take
+# Reboot The machine - It appears that only a reboot allows the group to take
+reboot now
+```
 
 Then as your sudo user (do not sudo the call, that is done in the script):
 
