@@ -1,4 +1,4 @@
-# Open Mandriva Packages w/ Extended Repos enabled
+# Debian Packages
 apt_packages:
   - gimp
   - x264
@@ -80,20 +80,20 @@ apt_packages:
   - lskat
 
 #FIXME
-apt_disallowed_packages:
-  - telegram-desktop
-  - neochat
-  - kget
-  - ktorrent
-
-#FIXME
 apt_disallowed_browsers:
   - chromium
-  - firefox
-  - konqueror
-  - torbrowser-launcher
+  - firefox-esr
   - qutebrowser
   - angelfish
-  - midori
   - privacybrowser
   - falkon
+  - alice
+  - alevt
+  - amfora
+  - artemis
+  - bashbro
+  - epiphany-browser
+  - konqueror
+  - morph-browser
+  - netsurf-*
+

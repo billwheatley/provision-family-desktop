@@ -5,12 +5,6 @@
     - vars/packages-apt.yaml
     - vars/remote-non-repo-debs.yaml
   tasks:
-  #- name: Ensure Certain OpenMandriva dnf Packages are Absent
-  #  dnf:
-  #    update_cache: yes
-  #    name: "{{ dnf_disallowed_packages }}"
-  #    allowerasing: yes
-  #    state: absent  
   - name: Ensure Distro apt repo packages are up to date
     apt:
       name: "*"
@@ -43,15 +37,14 @@
 
 - import_playbook: provision-common-desktop-roles.yaml
 
-#- name: Final Provision Step
-#  hosts: desktop
-#  gather_facts: true
-#  vars_files:
-#    - vars/packages-dnf.yaml
-#  tasks:
-#  - name: Make sure alternative browsers are Absent
-#    dnf:
-#      update_cache: yes
-#      name: "{{ dnf_disallowed_browsers }}"
-#      allowerasing: yes
-#      state: absent  
+- name: Final Provision Step
+  hosts: desktop
+  gather_facts: true
+  vars_files:
+    - vars/packages-apt.yaml
+  tasks:
+  - name: Make sure alternative browsers are Absent
+    apt:
+      update_cache: yes
+      name: "{{ apt_disallowed_browsers }}"
+      state: absent  
