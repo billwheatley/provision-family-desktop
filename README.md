@@ -1,7 +1,5 @@
 # provision-family-desktop
 
-This is an **EXPERIMENTAL BRANCH** -- BEWARE
-
 Ansible Playbooks to build my "Family" desktop.
 
 With Windows 10 EOL having come to fruition (Oct 14 2025), the old family desktop, lacking a TPM 2.0 chip has no other choice then to get an upgrade to linux! Okay I am aware of the registry hack to get Windows 11 to work (for now) but I am not going there. I will take the excuse when I can to move the family over to linux.
@@ -20,7 +18,7 @@ Using Ansible playbooks worked so well for [my own desktops](https://github.com/
 
 ### Tested with
 
-* WORK IN PROGRESS : Debian 13 - KDE
+* Debian 13 w/ KDE Plasma Desktop
 
 *Note: These may work against other similar versions and distros with little or no modification*
 
@@ -28,7 +26,7 @@ Using Ansible playbooks worked so well for [my own desktops](https://github.com/
 
 Since vanilla installs of distro don't typically install Ansible or these playbooks, I have created a bash script to automate the install of required software to get started using these playbooks.  This only needs to get run one time in the life of your distro install (unless you undo something this script does). Additionally Debian doesn't setup privileged users so I also have a script to do that.
 
-Root Bootstap Function:
+Root Bootstrap Function:
 
 * Setup a sudo user
 
@@ -48,7 +46,7 @@ apt-get install -y curl
 # TODO When merging change to main branch reference
 curl -s https://raw.githubusercontent.com/billwheatley/provision-family-desktop/debian-13/make-sudo.sh | bash -s myUserName
 
-# Reboot The machine - It appears that only a reboot allows the group to take
+# Reboot The machine - It appears that only a reboot allows the sudo group to take
 reboot now
 ```
 
