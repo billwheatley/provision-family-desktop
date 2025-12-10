@@ -28,6 +28,7 @@ Since vanilla installs of distro don't typically install Ansible or these playbo
 
 Root Bootstrap Function:
 
+* Install curl
 * Setup a sudo user
 
 Sudo Bootstrap Functions:
