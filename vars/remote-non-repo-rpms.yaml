@@ -1,4 +1,0 @@
-# URLS to RPMS that can be downloaded via http(s) (applies to any rpm distro)
-remote_non_repo_rpms:
-  - https://zoom.us/client/latest/zoom_x86_64.rpm
-

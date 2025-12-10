@@ -1,5 +1,5 @@
 # Open Mandriva Packages w/ Extended Repos enabled
-dnf_packages:
+apt_packages:
   - gimp
   - x264
   - x265
@@ -26,18 +26,16 @@ dnf_packages:
   - neovim
   - calibre
   - inkscape
-  - nfs-utils
-  - vim-X11
+  - nfs-common
+  - vim-gtk3
   - openconnect
-  - fuse-exfat
-  - lib64dvdnav4
-  - lib64dvdread
-  - pkgconf
-  - vim
-  - poppler
-  - java-21-openjdk-devel
-  - iptables
+  - exfat-fuse
+  - libdvdnav4
+  - libdvdread8
+  - libdvd-pkg
+  - libdvd-pkg
   - bindfs
+  - openssh-server
   # Useful for radeon GPUs
   - radeontop
 # KDE Specific
@@ -51,8 +49,6 @@ dnf_packages:
   - kstars
   - marble
   - krita
-  # For compatibility with electron based apps running on KDE 
-  - lib64dbusmenu-qt6
   # Games
   - hedgewars
   - katomic
@@ -85,13 +81,15 @@ dnf_packages:
   - blinken
   - lskat
 
-dnf_disallowed_packages:
+#FIXME
+apt_disallowed_packages:
   - telegram-desktop
   - neochat
   - kget
   - ktorrent
 
-dnf_disallowed_browsers:
+#FIXME
+apt_disallowed_browsers:
   - chromium
   - firefox
   - konqueror

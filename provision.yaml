@@ -2,47 +2,32 @@
   hosts: desktop
   gather_facts: true
   vars_files:
-    - vars/packages-dnf.yaml
-    - vars/remote-non-repo-rpms.yaml
+    - vars/packages-apt.yaml
+    - vars/remote-non-repo-debs.yaml
   tasks:
-  - name: Ensure Certain OpenMandriva dnf Packages are Absent
-    dnf:
-      update_cache: yes
-      name: "{{ dnf_disallowed_packages }}"
-      allowerasing: yes
-      state: absent  
-  - name: Ensure Distro dnf repo packages are up to date
-    dnf:
+  #- name: Ensure Certain OpenMandriva dnf Packages are Absent
+  #  dnf:
+  #    update_cache: yes
+  #    name: "{{ dnf_disallowed_packages }}"
+  #    allowerasing: yes
+  #    state: absent  
+  - name: Ensure Distro apt repo packages are up to date
+    apt:
       name: "*"
       state: latest
+      force_apt_get: yes
     tags:
       - pkg_update
-  - name: Ensure OpenMandriva dnf Packages are Present
-    dnf:
+  - name: Ensure Debian apt Packages are Present
+    apt:
       update_cache: yes
-      name: "{{ dnf_packages }}"
-      allowerasing: yes
+      name: "{{ common_packages + pop_packages}}"
       state: present
   - name: Ensure Remote Non-Repo Packages are up to Date
-    dnf:
-      disable_gpg_check: yes
-      name: "{{ remote_non_repo_rpms }}"
+    apt:
+      deb: "{{ item }}"
       state: present
-  ############################# Local RPM Install ##############################
-  - name: (Local rpm) Finding Local rpms
-    find:
-      paths: "/home/{{ for_user }}/automated-install/rpm"
-      patterns: "*.rpm"
-    register: local_rpm_results
-  - name: (Local rpm) Prepare Local rpm List
-    set_fact:
-      rpm_paths: "{{ local_rpm_results.files | map(attribute='path') | list}}"
-  - name: (Local rpm) Ensure Local rpm Packages are Installed
-    dnf:
-      name: "{{ rpm_paths }}"
-      state: present
-      disable_gpg_check: yes
-  ################################################################################
+    loop: "{{ remote_non_repo_debs }}"
 
   - name: Ensure avahi-daemon (for automatic printer detection) is enable and started
     systemd:
@@ -58,15 +43,15 @@
 
 - import_playbook: provision-common-desktop-roles.yaml
 
-- name: Final Provision Step
-  hosts: desktop
-  gather_facts: true
-  vars_files:
-    - vars/packages-dnf.yaml
-  tasks:
-  - name: Make sure alternative browsers are Absent
-    dnf:
-      update_cache: yes
-      name: "{{ dnf_disallowed_browsers }}"
-      allowerasing: yes
-      state: absent  
+#- name: Final Provision Step
+#  hosts: desktop
+#  gather_facts: true
+#  vars_files:
+#    - vars/packages-dnf.yaml
+#  tasks:
+#  - name: Make sure alternative browsers are Absent
+#    dnf:
+#      update_cache: yes
+#      name: "{{ dnf_disallowed_browsers }}"
+#      allowerasing: yes
+#      state: absent  

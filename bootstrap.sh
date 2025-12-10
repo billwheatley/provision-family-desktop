@@ -1,51 +1,20 @@
 #!/bin/bash
 
-# For Open Mandriva repo file editing
-safe_edit_repo_file() {
-   grep -n "enabled" $1 |grep $2 >/dev/null
-   if [ $? -eq 0 ]; then
-       sed_exp=`echo $2`"s/.*/enabled=1/"
-       sudo sed -i $sed_exp $1 
-   else
-       echo Unexpected Repo file format [$1], expecting enabled flag on line $2
-       echo ERROR: Script can not enable required Repo, this script needs to be fixed
-       exit 1
-   fi
-}
-
-if [ -x "$(command -v dnf)" ]; then 
-    if [ -f /etc/openmandriva-release ]; then
-        echo OpenMandrivia Detected, additional repos need to be turned on now
-        if [ -f /etc/yum.repos.d/openmandriva-rock-x86_64.repo ]; then
-            echo Detected x86_64 Variant
-            repo_file=/etc/yum.repos.d/openmandriva-rock-x86_64.repo
-        elif [ -f /etc/yum.repos.d/openmandriva-rock-znver1.repo ]; then
-            echo Detected AMD Variant
-            repo_file=/etc/yum.repos.d/openmandriva-rock-znver1.repo
-        fi
-        sudo cp $repo_file $repo_file.backup
-        echo Backup of repo file made if this fails: $repo_file.backup
-        # Doing this by Line number - These lines applies to ROCK variants
-        safe_edit_repo_file $repo_file "83"
-        safe_edit_repo_file $repo_file "94"
-        safe_edit_repo_file $repo_file "155"
-        safe_edit_repo_file $repo_file "166"
-        safe_edit_repo_file $repo_file "227"
-        safe_edit_repo_file $repo_file "238"
-
-        # OM uses bsd-tar by default, Ansible needs gnu-tar, this will fix this (and it's not an official dependency of ansible in OM repos)
-        sudo dnf -y install gnutar ansible git sshpass
+if [ -x "$(command -v apt-get)" ]; then 
+    sudo apt-get update
+    sudo apt-get -y install ansible git sshpass
     else
-        echo Not the expected distro, looking for OpenMandrivia
+        echo Not the expected distro, looking for Debian
         exit 1        
     fi
 else 
-    echo Not sure which package manager is running on this machine
+    echo Not sure which package manager is running on this machine, its not apt-get as expected
     exit 1
 fi
 
 #clone from GIT
-git clone https://github.com/billwheatley/provision-family-desktop.git
+#TODO - Remove branch reference before main branch merge
+git clone -b debian-13 https://github.com/billwheatley/provision-family-desktop.git
 
 # Make sure plain 'python' is in path (ansible does not do will without it)
 if [ ! `which python` ]; then
@@ -57,9 +26,6 @@ fi
 
 # Make Roles-dir
 mkdir desktop-roles
-
-# Make automated install dirs
-mkdir -p $HOME/automated-install/
 
 #Call key setup playbook
 PRIMARY_USER_GROUP=`id -gn`
